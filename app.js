@@ -5,7 +5,7 @@ function getComputerChoice(){
     return mylist[Math.round(Math.random() * 2)]
 }
 
-function singlegame(playerSelection, computerSelection){
+function playRound(playerSelection, computerSelection){
 
     playerSelection=playerSelection.toLowerCase()
     computerSelection=computerSelection.toLowerCase()
@@ -58,8 +58,57 @@ function singlegame(playerSelection, computerSelection){
 
     else{
 
-        console.log("Enter a correct value: 'rock', 'paper' or 'scissors'")
+        return "Enter a correct value: 'rock', 'paper' or 'scissors'"
     }
 
     
 }
+
+function game(){
+    let playerSelection;
+    let result;
+    let playerScore=0;
+    let computerScore=0;
+
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Enter your selection ['rock', 'paper' or 'scissors']")
+        computerSelection=getComputerChoice()
+        result=playRound(playerSelection,computerSelection)
+
+        console.log("Partie "+i+":")
+
+        if (result.includes('Win')){
+                playerScore++
+                console.log(result)
+        }
+        else{
+            if(result.includes('Lose')){
+                computerScore++
+                console.log(result)
+            }
+            else{
+                console.log(result)
+            }
+        }
+
+
+    }
+
+    console.log("Final results: Player Score:"+playerScore+" & Computer Score: "+computerScore)
+
+    if(computerScore>playerScore){
+        console.log("Computer wins !")
+
+    }
+    else{
+        if(computerScore<playerScore){
+            console.log("Player wins!")
+        }
+        else{
+            console.log("It's a draw !")
+        }
+    }
+}
+
+
+
