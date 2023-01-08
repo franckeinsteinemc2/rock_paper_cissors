@@ -88,13 +88,13 @@ function game(){
 
         if (result.includes('Win')){
             playerScore++
-            alert(result)}
+            aff_result.textContent=result}
         else{
             if(result.includes('Lose')){
             computerScore++
-            console.log(result)}
+            aff_result.textContent=result}
             else{
-            console.log(result)}
+                aff_result.textContent=result}
         }
     });
   });
