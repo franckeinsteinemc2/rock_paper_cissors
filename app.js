@@ -8,7 +8,6 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
 
     playerSelection=playerSelection.toLowerCase()
-    computerSelection=computerSelection.toLowerCase()
 
     if(['rock','paper','scissors'].includes(playerSelection)){
 
@@ -66,33 +65,40 @@ function playRound(playerSelection, computerSelection){
 
 function game(){
     let playerSelection;
+    let computerSelection;
     let result;
     let playerScore=0;
     let computerScore=0;
+    
+    const buttons= document.querySelectorAll('#btn');
 
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Enter your selection ['rock', 'paper' or 'scissors']")
-        computerSelection=getComputerChoice()
-        result=playRound(playerSelection,computerSelection)
+    const aff_result=document.querySelector('#result')
 
-        console.log("Partie "+i+":")
+    buttons.forEach((button) => {
+
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', (e) => {
+
+        playerSelection=e.target.textContent;
+
+        computerSelection=getComputerChoice();
+
+        result=playRound(playerSelection,computerSelection);
+
 
         if (result.includes('Win')){
-                playerScore++
-                console.log(result)
-        }
+            playerScore++
+            alert(result)}
         else{
             if(result.includes('Lose')){
-                computerScore++
-                console.log(result)
-            }
+            computerScore++
+            console.log(result)}
             else{
-                console.log(result)
-            }
+            console.log(result)}
         }
+    });
+  });
 
-
-    }
 
     console.log("Final results: Player Score:"+playerScore+" & Computer Score: "+computerScore)
 
@@ -109,6 +115,8 @@ function game(){
         }
     }
 }
+
+game()
 
 
 
