@@ -70,15 +70,21 @@ function game(){
     let playerScore=0;
     let computerScore=0;
     
+    
     const buttons= document.querySelectorAll('#btn');
 
-    const aff_result=document.querySelector('#result')
+    const aff_result=document.querySelector('#result');
+
+    const r_score=document.querySelector('#score');
+
+    const winner=document.querySelector('#winner')
 
     buttons.forEach((button) => {
 
     // and for each one we add a 'click' listener
     button.addEventListener('click', (e) => {
 
+        winner.textContent="" 
         playerSelection=e.target.textContent;
 
         computerSelection=getComputerChoice();
@@ -88,32 +94,46 @@ function game(){
 
         if (result.includes('Win')){
             playerScore++
-            aff_result.textContent=result}
+            }
+
         else{
             if(result.includes('Lose')){
             computerScore++
-            aff_result.textContent=result}
-            else{
-                aff_result.textContent=result}
+            }
+           
         }
+        
+        aff_result.textContent=result
+        r_score.textContent="Results: Player Score:"+playerScore+" & Computer Score: "+computerScore
+
+        if(playerScore==5 || computerScore==5){
+
+            if(computerScore>playerScore){
+                
+                winner.textContent="Computer wins !"
+                
+        
+            }
+            else{
+                if(computerScore<playerScore){
+                    winner.textContent="Player wins!"
+                }
+                else{
+                    winner.textContent="It's a draw !"
+                }
+            }
+            playerScore=0;
+            computerScore=0;
+                   
+        
+        }
+
+        
     });
   });
 
 
-    console.log("Final results: Player Score:"+playerScore+" & Computer Score: "+computerScore)
 
-    if(computerScore>playerScore){
-        console.log("Computer wins !")
-
-    }
-    else{
-        if(computerScore<playerScore){
-            console.log("Player wins!")
-        }
-        else{
-            console.log("It's a draw !")
-        }
-    }
 }
 
 game()
